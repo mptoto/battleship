@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2F29B729-50E6-49DD-B388-CCFC8C53875A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>battleship</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>51F573E6-CE23-4D0C-A8A5-5EB093449ED4</key>
+		<string>https://github.com/mptoto/battleship.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>battleship.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>51F573E6-CE23-4D0C-A8A5-5EB093449ED4</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mptoto/battleship.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>51F573E6-CE23-4D0C-A8A5-5EB093449ED4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>51F573E6-CE23-4D0C-A8A5-5EB093449ED4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>battleship</string>
+		</dict>
+	</array>
+</dict>
+</plist>
