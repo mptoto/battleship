@@ -12,21 +12,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	_gameStates = [[NSMutableArray alloc] init];
-		_clockTicker = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateClocks:) userInfo:nil repeats:YES];
-	[_clockTicker setTolerance:1.0];
-	
     return YES;
-}
-
-- (void)updateClocks:(NSTimer *)myTimer {
-    NSDate *now = [[NSDate alloc] init];  //moved this outside for loop
-	for (GameStates *currGame in _gameStates) {
-    NSTimeInterval elapsedTime = [now timeIntervalSinceDate: [currGame  turnStartTime]];
-    [currGame setTimeLeft:24.0 * 60.0 * 60.0 - elapsedTime];
-	}
-	[self.myTableView reloadData];
-    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

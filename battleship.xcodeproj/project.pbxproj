@@ -15,7 +15,7 @@
 		C9646C301859604A000EE738 /* circle_white_15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = C9646C2F1859604A000EE738 /* circle_white_15x15.png */; };
 		C97FCBB9187CDD47008BD1D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FCBB3187CDD47008BD1D5 /* AppDelegate.m */; };
 		C97FCBBA187CDD47008BD1D5 /* GamesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FCBB5187CDD47008BD1D5 /* GamesListViewController.m */; };
-		C97FCBBB187CDD47008BD1D5 /* GameStates.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FCBB7187CDD47008BD1D5 /* GameStates.m */; };
+		C97FCBBB187CDD47008BD1D5 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = C97FCBB7187CDD47008BD1D5 /* Game.m */; };
 		C97FCBBC187CDD47008BD1D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C97FCBB8187CDD47008BD1D5 /* Main.storyboard */; };
 		C9A6A9BA1842DCAE003469EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A6A9B91842DCAE003469EA /* Foundation.framework */; };
 		C9A6A9BC1842DCAE003469EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A6A9BB1842DCAE003469EA /* CoreGraphics.framework */; };
@@ -34,6 +34,7 @@
 		C9B79DAF185A3C0A008382AC /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B79DAE185A3C0A008382AC /* PlayerViewController.m */; };
 		E3B1C45A18A97BC700134F41 /* ShipLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1C45918A97BC700134F41 /* ShipLayoutView.m */; };
 		E3B1C45D18AAD6EC00134F41 /* ShipPaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */; };
+		E3F8A1EE18B9241200A048C1 /* GameRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F8A1ED18B9241200A048C1 /* GameRepo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +58,8 @@
 		C97FCBB3187CDD47008BD1D5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = retimerissue/AppDelegate.m; sourceTree = "<group>"; };
 		C97FCBB4187CDD47008BD1D5 /* GamesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GamesListViewController.h; path = retimerissue/GamesListViewController.h; sourceTree = "<group>"; };
 		C97FCBB5187CDD47008BD1D5 /* GamesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GamesListViewController.m; path = retimerissue/GamesListViewController.m; sourceTree = "<group>"; };
-		C97FCBB6187CDD47008BD1D5 /* GameStates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameStates.h; path = retimerissue/GameStates.h; sourceTree = "<group>"; };
-		C97FCBB7187CDD47008BD1D5 /* GameStates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameStates.m; path = retimerissue/GameStates.m; sourceTree = "<group>"; };
+		C97FCBB6187CDD47008BD1D5 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Game.h; path = retimerissue/Game.h; sourceTree = "<group>"; };
+		C97FCBB7187CDD47008BD1D5 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Game.m; path = retimerissue/Game.m; sourceTree = "<group>"; };
 		C97FCBB8187CDD47008BD1D5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = retimerissue/Main.storyboard; sourceTree = "<group>"; };
 		C9A6A9B61842DCAE003469EA /* battleship.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = battleship.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A6A9B91842DCAE003469EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,6 +86,8 @@
 		E3B1C45918A97BC700134F41 /* ShipLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShipLayoutView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E3B1C45B18AAD6EC00134F41 /* ShipPaletteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipPaletteView.h; sourceTree = "<group>"; };
 		E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShipPaletteView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E3F8A1EC18B9241200A048C1 /* GameRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRepo.h; sourceTree = "<group>"; };
+		E3F8A1ED18B9241200A048C1 /* GameRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRepo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +151,10 @@
 				C9A6A9EF184432D7003469EA /* Ships.m */,
 				C97FCBB2187CDD47008BD1D5 /* AppDelegate.h */,
 				C97FCBB3187CDD47008BD1D5 /* AppDelegate.m */,
-				C97FCBB6187CDD47008BD1D5 /* GameStates.h */,
-				C97FCBB7187CDD47008BD1D5 /* GameStates.m */,
+				C97FCBB6187CDD47008BD1D5 /* Game.h */,
+				C97FCBB7187CDD47008BD1D5 /* Game.m */,
+				E3F8A1EC18B9241200A048C1 /* GameRepo.h */,
+				E3F8A1ED18B9241200A048C1 /* GameRepo.m */,
 				C97FCBB8187CDD47008BD1D5 /* Main.storyboard */,
 				C97FCBB4187CDD47008BD1D5 /* GamesListViewController.h */,
 				C97FCBB5187CDD47008BD1D5 /* GamesListViewController.m */,
@@ -308,11 +313,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3B1C45A18A97BC700134F41 /* ShipLayoutView.m in Sources */,
+				E3F8A1EE18B9241200A048C1 /* GameRepo.m in Sources */,
 				E3B1C45D18AAD6EC00134F41 /* ShipPaletteView.m in Sources */,
 				C9B79DAF185A3C0A008382AC /* PlayerViewController.m in Sources */,
 				C9A6A9D01842DCAE003469EA /* ViewController.m in Sources */,
 				C97FCBBA187CDD47008BD1D5 /* GamesListViewController.m in Sources */,
-				C97FCBBB187CDD47008BD1D5 /* GameStates.m in Sources */,
+				C97FCBBB187CDD47008BD1D5 /* Game.m in Sources */,
 				C9A6A9F0184432D7003469EA /* Ships.m in Sources */,
 				C97FCBB9187CDD47008BD1D5 /* AppDelegate.m in Sources */,
 				C9A6A9C61842DCAE003469EA /* main.m in Sources */,

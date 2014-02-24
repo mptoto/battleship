@@ -22,4 +22,25 @@
 	return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super init];
+	if (self) {
+		_length = [aDecoder decodeIntForKey:@"length"];
+		self.start = [aDecoder decodeCGPointForKey:@"start"];
+		self.isPlaced = [aDecoder decodeBoolForKey:@"isPlaced"];
+		self.isVertical = [aDecoder decodeBoolForKey:@"isVertical"];
+	}
+	return self;
+}
+
+- (void) encodeWithCoder:(NSCoder *)aCoder
+{
+	[aCoder encodeInt:(int)self.length forKey:@"length"];
+	[aCoder encodeCGPoint:self.start forKey:@"start"];
+	[aCoder encodeBool:self.isPlaced forKey:@"isPlaced"];
+	[aCoder encodeBool:self.isVertical forKey:@"isVertical"];
+}
+
+
 @end

@@ -125,9 +125,6 @@
                                 <rect key="frame" x="0.0" y="63" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="paletteView" destination="Qej-45-Tkm" id="zQm-RQ-kDx"/>
-                                </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qej-45-Tkm" userLabel="ShipDisplay" customClass="ShipPaletteView">
                                 <rect key="frame" x="0.0" y="391" width="320" height="108"/>
@@ -179,6 +176,7 @@
                         <outlet property="CoordinatesSelectedField" destination="kje-Sy-RKV" id="48U-Wa-N0e"/>
                         <outlet property="boardImage" destination="17H-MK-jnc" id="042-11-b4X"/>
                         <outlet property="overlayView" destination="qYv-qD-oLO" id="5DZ-cC-cZz"/>
+                        <outlet property="paletteView" destination="Qej-45-Tkm" id="BpA-jI-MEK"/>
                         <outlet property="pegView" destination="KeI-RR-g3M" id="M7Q-Vn-Xkh"/>
                         <outlet property="tapRecognizer" destination="J97-6l-mpY" id="xtB-Rg-caN"/>
                         <outlet property="view" destination="kh9-bI-dsS" id="Qep-qE-xbU"/>
