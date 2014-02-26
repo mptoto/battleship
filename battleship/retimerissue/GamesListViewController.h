@@ -11,13 +11,9 @@
 #import "GameRepo.h"
 
 
-@interface GamesListViewController : UITableViewController
-{
-   // NSMutableArray *dataArray;
-}
+@interface GamesListViewController : UITableViewController <UITableViewDataSource>
 @property (strong, nonatomic) NSTimer *clockTicker;
 
-- (IBAction)newGame:(id)sender;
 - (void)updateClocks:(NSTimer *)myTimer;
 
 @end

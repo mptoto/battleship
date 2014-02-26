@@ -20,7 +20,7 @@
 		self.turnStartTime = [[NSDate alloc] init]; //initialized to current date and time
 		[self setOpponentNames:@[@"Todd"]];
 		[self setBoardMap:@"satelite_ocean_view_2.jpg"];
-		_myfleet = @[[[Ships alloc] init:2], [[Ships alloc] init:3], [[Ships alloc] init:3], [[Ships alloc] init:4], [[Ships alloc] init:5]];
+		_myFleet = @[[[Ships alloc] init:2], [[Ships alloc] init:3], [[Ships alloc] init:3], [[Ships alloc] init:4], [[Ships alloc] init:5]];
 		
 		//myMoves;
 		//opponentShipLocations;
@@ -38,7 +38,7 @@
 		self.isMyMove = [aDecoder decodeBoolForKey:@"isMyMove"];
 		self.timeLeft = [aDecoder decodeDoubleForKey:@"timeLeft"];
 		self.turnStartTime = [aDecoder decodeObjectForKey:@"turnStartTime"];
-		_myfleet = [aDecoder decodeObjectForKey:@"myfleet"];
+		_myFleet = [aDecoder decodeObjectForKey:@"myFleet"];
 		
 		[self setOpponentNames:@[@"Todd"]];
 		[self setBoardMap:@"satelite_ocean_view_2.jpg"];
@@ -56,7 +56,7 @@
 	[aCoder encodeBool:self.isMyMove forKey:@"isMyMove"];
 	[aCoder encodeDouble:self.timeLeft forKey:@"timeLeft"];
 	[aCoder encodeObject:self.turnStartTime forKey:@"turnStartTime"];
-	[aCoder encodeObject:self.myfleet forKey:@"myfleet"];
+	[aCoder encodeObject:self.myFleet forKey:@"myFleet"];
 	
 	//[self setOpponentNames:@[@"Todd"]];
 	//[self setBoardMap:@"satelite_ocean_view_2.jpg"];

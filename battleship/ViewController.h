@@ -18,20 +18,11 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *boardImage;
 @property (nonatomic, strong) IBOutlet UITapGestureRecognizer *tapRecognizer;
-@property NSString *coordinates;
-@property NSString *tapImageName;
-
 @property (weak, nonatomic) IBOutlet UILabel *CoordinatesSelectedField;
-
 @property (weak, nonatomic) IBOutlet UIImageView *pegView;
-@property (weak, nonatomic) IBOutlet ShipLayoutView *overlayView;
-@property (weak, nonatomic) IBOutlet ShipPaletteView *paletteView;
 
-@property (nonatomic) CGPoint start;
-@property (nonatomic) CGPoint currLoc;
 @property (nonatomic, weak) Game *currGame;
 
--(void) placeShip:(UIPanGestureRecognizer *)recognizer;
 - (IBAction)firePressed:(id)sender;
 
 //- (IBAction)colorPressed:(id)sender;

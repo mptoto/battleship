@@ -23,9 +23,7 @@
 	for (UIButton *check in [self subviews]) {
 		[check setHidden:YES];
 	}
-	AppDelegate * theApp = [[UIApplication sharedApplication] delegate];
-	GameStates *game = theApp.gameStates[0];
-	self.theShips = game.myfleet;
+	//
 }
 
 - (void)drawRect:(CGRect)rect

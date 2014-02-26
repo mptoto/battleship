@@ -8,12 +8,7 @@
 
 #import "GamesListViewController.h"
 #import "ViewController.h"
-#import <Game.h>
-
-@interface GamesListViewController () <UITableViewDataSource>
-
-@end
-
+#import "Game.h"
 
 @implementation GamesListViewController
 
@@ -76,7 +71,7 @@
     static NSString *CellIdentifier = @"GameCell1";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
 	Game *current = [GameRepo sharedRepo].allGames[indexPath.section][indexPath.row];
-    [cell.textLabel setText:[current opponentName]];
+    [cell.textLabel setText:[current opponentNames][0]];
 
     //turn "turnNumber" into string
     NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %2.0d:%2.0d:%2.0d",[current turnNumber], (int)[current timeLeft]/(60*60), ((int)[current timeLeft]%(60*60))/60, ((int)[current timeLeft]%(60*60))%60];
@@ -92,12 +87,6 @@
     return YES;
 }
 
-
-- (IBAction)newGame:(id)sender {
-	[[GameRepo sharedRepo] generateNewGame];
-	//TODO - perform segue to setting up game
-	[self.tableView reloadData];
-}
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,10 +117,15 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-	ViewController *myVC = [segue destinationViewController];
-	myVC.currGame = [[GameRepo sharedRepo] allGames][indexPath.section][indexPath.row];
-
+	ViewController *destVC = [segue destinationViewController];
+	if([segue.identifier isEqualToString:@"PlaceShips"]){
+		Game *newGame = [[GameRepo sharedRepo] generateNewGame];
+		destVC.currGame = newGame;
+	}
+	else {
+		NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+		destVC.currGame = [[GameRepo sharedRepo] allGames][indexPath.section][indexPath.row];
+	}
 }
 
 /*

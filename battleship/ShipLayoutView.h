@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Ships.h"
-#import "GameStates.h"
+#import "GameRepo.h"
 #import "AppDelegate.h"
 
 @class ShipPaletteView;

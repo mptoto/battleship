@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "GamesListViewController.h"
 #import "ViewController.h"
-#import "GameStates.h"
+#import "GameRepo.h"
+#import "ShipLayoutView.h"
 
 @interface PlayerViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet ShipLayoutView *overlay;
+@property (nonatomic, weak) Game *currGame;
 - (IBAction)backButtonPressed:(id)sender;
 
 @end

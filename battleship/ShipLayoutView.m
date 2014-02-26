@@ -15,17 +15,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-		AppDelegate * theApp = [[UIApplication sharedApplication] delegate];
-		GameStates *game = theApp.gameStates[0];
-		self.theShips = game.myfleet;
+		//
 	}
     return self;
 }
 
 - (void) awakeFromNib {
-	AppDelegate * theApp = [[UIApplication sharedApplication] delegate];
-	GameStates *game = theApp.gameStates[0];
-	self.theShips = game.myfleet;
+	//
 }
 
 
