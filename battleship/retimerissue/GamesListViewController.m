@@ -8,11 +8,7 @@
 
 #import "GamesListViewController.h"
 #import "ViewController.h"
-
-@interface GamesListViewController () <UITableViewDataSource>
-
-@end
-
+#import "Game.h"
 
 @implementation GamesListViewController
 
@@ -28,61 +24,61 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.theApp = [[UIApplication sharedApplication] delegate];
-	[self.theApp setMyTableView:[self tableView]];
-    
-    //Create an array to hold older games
-    NSMutableArray *oldGames = [[NSMutableArray alloc]init];
-    //Add 2 make believe games to the oldGames Array
-    GameStates *oldGame1 = [[GameStates alloc]init];
-    GameStates *oldGame2 = [[GameStates alloc]init];
-    [oldGames addObject:oldGame1];
-    [oldGames addObject:oldGame2];
-//    for (id games in oldGames) {
-//        NSLog(@"%@", games);
-//    }
+
+	self.clockTicker = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateClocks:) userInfo:nil repeats:YES];
+	[self.clockTicker setTolerance:1.0];
+
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)updateClocks:(NSTimer *)myTimer {
+    NSDate *now = [[NSDate alloc] init];  //moved this outside for loop
+	for (int i = 0; i < [[[GameRepo sharedRepo] allGames] count]; i++) {
+		for (Game *currGame in [[GameRepo sharedRepo] allGames][i]) {
+			NSTimeInterval elapsedTime = [now timeIntervalSinceDate: [currGame  turnStartTime]];
+			[currGame setTimeLeft:24.0 * 60.0 * 60.0 - elapsedTime];
+		}
+	}
+	[self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [[GameRepo sharedRepo].allGames count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.theApp gameStates] count];
+    return [[GameRepo sharedRepo].allGames[section] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if(section == 0)
-        return @"Current Games";
-    if(section == 1)
-        return @"Old Games";
+
+    NSString *headerString;
+	if(section == 0)
+        headerString = @"Your Turn";
+    else if(section == 1)
+        headerString =  @"Waiting on Opponent";
     else
-        return @"";
+        headerString =  @"Waiting for Game to Finish";
+	
+	return headerString;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"GameCell1";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
-	GameStates *current = [[self.theApp gameStates] objectAtIndex:indexPath.row];
-    [cell.textLabel setText:[current opponentName]];
+	Game *current = [GameRepo sharedRepo].allGames[indexPath.section][indexPath.row];
+    [cell.textLabel setText:[current opponentNames][0]];
+
     //turn "turnNumber" into string
-    
     NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %2.0d:%2.0d:%2.0d",[current turnNumber], (int)[current timeLeft]/(60*60), ((int)[current timeLeft]%(60*60))/60, ((int)[current timeLeft]%(60*60))%60];
     [cell.detailTextLabel setText:turnNumberString];
+
     //set picture for cell
-    UIImage *boardImageThumbnail = [UIImage imageNamed:[current boardMap]];
-    cell.imageView.image = boardImageThumbnail;
+    cell.imageView.image = [UIImage imageNamed:[current boardMap]];
     
     return cell;
 }
@@ -92,45 +88,45 @@
 }
 
 
-- (IBAction)newGame:(id)sender {
-	[[self.theApp gameStates] addObject:[[GameStates alloc ]init]];
-	[self.tableView reloadData];
-}
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[self.theApp gameStates]removeObjectAtIndex:indexPath.row];
+		[[GameRepo sharedRepo] removeGameAt:indexPath];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
-	if(!self.theApp.clockTicker)
-		self.theApp.clockTicker = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self.theApp selector:@selector(updateClocks:) userInfo:nil repeats:YES];
+	if(!self.clockTicker)
+		self.clockTicker = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateClocks:) userInfo:nil repeats:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self.theApp.clockTicker invalidate];
-	self.theApp.clockTicker = nil;
+	[self.clockTicker invalidate];
+	self.clockTicker = nil;
 }
 
 - (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if(!self.theApp.clockTicker)
-		self.theApp.clockTicker = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self.theApp selector:@selector(updateClocks:) userInfo:nil repeats:YES];
+	if(!self.clockTicker)
+		self.clockTicker = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateClocks:) userInfo:nil repeats:YES];
 }
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	//    UIViewController *myVC = [segue destinationViewController];
-
+	ViewController *destVC = [segue destinationViewController];
+	if([segue.identifier isEqualToString:@"PlaceShips"]){
+		Game *newGame = [[GameRepo sharedRepo] generateNewGame];
+		destVC.currGame = newGame;
+	}
+	else {
+		NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+		destVC.currGame = [[GameRepo sharedRepo] allGames][indexPath.section][indexPath.row];
+	}
 }
-
-
 
 /*
 // Override to support rearranging the table view.
@@ -147,6 +143,12 @@
     return YES;
 }
 */
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 
 @end

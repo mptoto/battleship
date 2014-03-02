@@ -10,7 +10,7 @@
 
 #define NUMSHIPS 5
 
-@interface Ships : NSObject
+@interface Ships : NSObject <NSCoding>
 
 @property (readonly) unsigned long length;
 @property CGPoint start;

@@ -11,35 +11,49 @@
 
 @implementation ViewController
 
-@synthesize tapImageName;
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    PlayerViewController *ivc = [segue destinationViewController];
-    [ivc setTitle:@"against todd"];
+    PlayerViewController *destVC = [segue destinationViewController];
+	destVC.currGame = self.currGame;
+    [destVC setTitle:@"Against todd"];
 }
 
 - (void)viewDidLoad
 {
-    
     //This title will use a placeholder to import the opponentsName field.
     [self setTitle:@"Opponents Board"];
-    
-    
-    //Create and initilaize a tap gesture
-    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self.overlayView action:@selector(placeShip:)];
-    [panRecognizer setMinimumNumberOfTouches:1];
-    [panRecognizer setMaximumNumberOfTouches:1];
-    [self.overlayView addGestureRecognizer:panRecognizer];
+	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showGestureForTapRecognizer:)];
+     [self.boardImage addGestureRecognizer:tapRecognizer];
+
 }
 
+//Action taken on the Gesture
+-(IBAction)showGestureForTapRecognizer:(UITapGestureRecognizer *)recognizer {
+    CGPoint location = [recognizer locationInView:self.boardImage];
+    //Michael's code to find the touch point and translate into 10x10 grid
+	location.x =(int)floorf(location.x / (self.boardImage.bounds.size.width / 10));
+	location.y=(int)floorf(location.y / (self.boardImage.bounds.size.height / 10));
+    //Convert gridIndex Int into a string
+    NSString *gridIndexString = [NSString stringWithFormat:@"%.0lf, %.0lf", location.x, location.y];
+    //Show tapped coordinates
+    self.CoordinatesSelectedField.text = gridIndexString;
+	
+	CGFloat modX = (int)location.x * (int)(self.boardImage.bounds.size.width / 10) + (int)(self.boardImage.bounds.size.width / 20);
+	CGFloat modY = (int)location.y * (int)(self.boardImage.bounds.size.height / 10) + (int)(self.boardImage.bounds.size.height / 20);
+	
+    //Draw the peg
+    [self drawImageForGestureRecognizer:recognizer atPoint:CGPointMake(modX, modY)];
+	//    [UIView animateWithDuration:1.0 animations:^{
+	//        self.pegView.alpha = 0.0;
+	//  }];
+}
 
 //Insert pin picture on board where it's touched.  This will be changed to an if statement to determine color of pin.
-//-(void)drawImageForGestureRecognizer:(UIGestureRecognizer *)recognizer atPoint:(CGPoint)centerPoint {
-//    CGPoint convertedPoint = [[self view] convertPoint:centerPoint fromView:self.boardImage];
-//    self.pegView.image = [UIImage imageNamed:@"circle_white_15x15.png"];
-//    self.pegView.center = convertedPoint;
-//    self.pegView.alpha = 1.0;
-//}
+-(void)drawImageForGestureRecognizer:(UIGestureRecognizer *)recognizer atPoint:(CGPoint)centerPoint {
+    CGPoint convertedPoint = [[self view] convertPoint:centerPoint fromView:self.boardImage];
+    self.pegView.image = [UIImage imageNamed:@"circle_white_15x15.png"];
+    self.pegView.center = convertedPoint;
+    self.pegView.alpha = 1.0;
+}
 
 - (void)didReceiveMemoryWarning
 {

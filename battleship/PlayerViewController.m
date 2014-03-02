@@ -8,10 +8,6 @@
 
 #import "PlayerViewController.h"
 
-@interface PlayerViewController ()
-
-@end
-
 @implementation PlayerViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -26,7 +22,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	//[self setTitle:[current opponentName]];
+	self.overlay.theShips = self.currGame.myFleet;
+	//[self setTitle:[current opponentNames][0]];
+
 }
 
 - (void)didReceiveMemoryWarning

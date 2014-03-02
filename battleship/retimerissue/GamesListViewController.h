@@ -8,16 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "GameStates.h"
+#import "GameRepo.h"
 
 
-@interface GamesListViewController : UITableViewController
-{
-   // NSMutableArray *dataArray;
-}
+@interface GamesListViewController : UITableViewController <UITableViewDataSource>
+@property (strong, nonatomic) NSTimer *clockTicker;
 
-@property (strong, nonatomic) AppDelegate *theApp;
-
-- (IBAction)newGame:(id)sender;
+- (void)updateClocks:(NSTimer *)myTimer;
 
 @end

@@ -8,25 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "Ships.h"
-#import "GameStates.h"
+#import "GameRepo.h"
 #import "GamesListViewController.h"
 #import "PlayerViewController.h"
 #import "ShipLayoutView.h"
+#import "ShipPaletteView.h"
 
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *boardImage;
 @property (nonatomic, strong) IBOutlet UITapGestureRecognizer *tapRecognizer;
-//@property (nonatomic, strong) IBOutlet UIImageView *touchImage;
-@property NSString *coordinates;
-@property NSString *tapImageName;
-
 @property (weak, nonatomic) IBOutlet UILabel *CoordinatesSelectedField;
-
 @property (weak, nonatomic) IBOutlet UIImageView *pegView;
-@property (weak, nonatomic) IBOutlet UIView *overlayView;
 
-//- (IBAction)Button_Pressed:(id)sender;
+@property (nonatomic, weak) Game *currGame;
+
 - (IBAction)firePressed:(id)sender;
 
 //- (IBAction)colorPressed:(id)sender;
