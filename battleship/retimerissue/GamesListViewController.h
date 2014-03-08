@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "GameRepo.h"
 
+#define SECS_IN_DAY 86400
+
 
 @interface GamesListViewController : UITableViewController <UITableViewDataSource>
 @property (strong, nonatomic) NSTimer *clockTicker;

@@ -35,7 +35,14 @@
 	for (int i = 0; i < [[[GameRepo sharedRepo] allGames] count]; i++) {
 		for (Game *currGame in [[GameRepo sharedRepo] allGames][i]) {
 			NSTimeInterval elapsedTime = [now timeIntervalSinceDate: [currGame  turnStartTime]];
-			[currGame setTimeLeft:24.0 * 60.0 * 60.0 - elapsedTime];
+			if(elapsedTime > SECS_IN_DAY)
+			{
+				int elapsedTurns = (int)elapsedTime / SECS_IN_DAY;
+				currGame.turnNumber += elapsedTurns;
+				elapsedTime = (int)elapsedTime % SECS_IN_DAY;
+				currGame.turnStartTime = [now dateByAddingTimeInterval:-elapsedTime];
+			}
+			[currGame setTimeLeft:(double)SECS_IN_DAY - elapsedTime];
 		}
 	}
 	[self.tableView reloadData];
@@ -74,7 +81,7 @@
     [cell.textLabel setText:[current opponentNames][0]];
 
     //turn "turnNumber" into string
-    NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %2.0d:%2.0d:%2.0d",[current turnNumber], (int)[current timeLeft]/(60*60), ((int)[current timeLeft]%(60*60))/60, ((int)[current timeLeft]%(60*60))%60];
+    NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %02.02d:%02.0d:%02.02d",[current turnNumber], (int)[current timeLeft]/(60*60), ((int)[current timeLeft]%(60*60))/60, ((int)[current timeLeft]%(60*60))%60];
     [cell.detailTextLabel setText:turnNumberString];
 
     //set picture for cell

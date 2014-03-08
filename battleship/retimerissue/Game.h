@@ -23,7 +23,7 @@
 @property (nonatomic, strong) NSArray *oppMoves;
 
 
-- init;
+- (id) init;
 
 
 @end
