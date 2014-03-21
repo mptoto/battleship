@@ -78,7 +78,8 @@
     static NSString *CellIdentifier = @"GameCell1";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
 	Game *current = [GameRepo sharedRepo].allGames[indexPath.section][indexPath.row];
-    [cell.textLabel setText:[current opponentNames][0]];
+	//TODO
+    [cell.textLabel setText:@"Bruce"];
 
     //turn "turnNumber" into string
     NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %02.02d:%02.0d:%02.02d",[current turnNumber], (int)[current timeLeft]/(60*60), ((int)[current timeLeft]%(60*60))/60, ((int)[current timeLeft]%(60*60))%60];

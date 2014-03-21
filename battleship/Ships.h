@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define NUMSHIPS 5
 
 @interface Ships : NSObject <NSCoding>
 
@@ -18,6 +17,7 @@
 @property BOOL isVertical;
 
 -(id) init:(int)size;
+- (BOOL)canShipBePlaced:(NSArray *)fleet;
 
 
 @end

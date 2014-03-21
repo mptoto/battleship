@@ -35,6 +35,7 @@
 		E320E7C518BDB38D00945107 /* PlaceShipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E320E7C418BDB38D00945107 /* PlaceShipsViewController.m */; };
 		E3B1C45A18A97BC700134F41 /* ShipLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1C45918A97BC700134F41 /* ShipLayoutView.m */; };
 		E3B1C45D18AAD6EC00134F41 /* ShipPaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */; };
+		E3B6239918CD6FD300AF306F /* Opponent.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B6239818CD6FD300AF306F /* Opponent.m */; };
 		E3F8A1EE18B9241200A048C1 /* GameRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F8A1ED18B9241200A048C1 /* GameRepo.m */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,9 @@
 		E3B1C45918A97BC700134F41 /* ShipLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShipLayoutView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E3B1C45B18AAD6EC00134F41 /* ShipPaletteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipPaletteView.h; sourceTree = "<group>"; };
 		E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShipPaletteView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		E3B6239718CD6FD300AF306F /* Opponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Opponent.h; sourceTree = "<group>"; };
+		E3B6239818CD6FD300AF306F /* Opponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Opponent.m; sourceTree = "<group>"; };
+		E3B6239A18CE406E00AF306F /* BBdefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBdefs.h; sourceTree = "<group>"; };
 		E3F8A1EC18B9241200A048C1 /* GameRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRepo.h; sourceTree = "<group>"; };
 		E3F8A1ED18B9241200A048C1 /* GameRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRepo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +154,9 @@
 		C9A6A9BF1842DCAE003469EA /* battleship */ = {
 			isa = PBXGroup;
 			children = (
+				E3B6239A18CE406E00AF306F /* BBdefs.h */,
+				E3B6239718CD6FD300AF306F /* Opponent.h */,
+				E3B6239818CD6FD300AF306F /* Opponent.m */,
 				C9A6A9EE184432D7003469EA /* Ships.h */,
 				C9A6A9EF184432D7003469EA /* Ships.m */,
 				C97FCBB6187CDD47008BD1D5 /* Game.h */,
@@ -257,7 +264,7 @@
 		C9A6A9AE1842DCAE003469EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Matthew Toto";
 				TargetAttributes = {
 					C9A6A9D61842DCAE003469EA = {
@@ -321,6 +328,7 @@
 				E3F8A1EE18B9241200A048C1 /* GameRepo.m in Sources */,
 				E3B1C45D18AAD6EC00134F41 /* ShipPaletteView.m in Sources */,
 				C9B79DAF185A3C0A008382AC /* PlayerViewController.m in Sources */,
+				E3B6239918CD6FD300AF306F /* Opponent.m in Sources */,
 				C9A6A9D01842DCAE003469EA /* ViewController.m in Sources */,
 				C97FCBBA187CDD47008BD1D5 /* GamesListViewController.m in Sources */,
 				C97FCBBB187CDD47008BD1D5 /* Game.m in Sources */,
@@ -373,7 +381,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -412,7 +419,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -474,7 +480,6 @@
 		C9A6A9EC1842DCAE003469EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/battleship.app/battleship";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -497,7 +502,6 @@
 		C9A6A9ED1842DCAE003469EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/battleship.app/battleship";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

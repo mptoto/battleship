@@ -55,7 +55,7 @@
 	for (Ships *aShip in self.theShips) {
 		if (aShip.isPlaced) {
 			CGContextSaveGState(cref);
-			CGContextMoveToPoint(cref, aShip.start.x * gridSize.width + gridSize.width * 0.1, (aShip.start.y + 1) * gridSize.height - gridSize.height * 0.05);
+			CGContextMoveToPoint(cref, aShip.start.x * gridSize.width + gridSize.width * 0.05, (aShip.start.y + 1) * gridSize.height - gridSize.height * 0.05);
 			drawShip(aShip.length, gridSize, aShip.isVertical, YES, [UIColor orangeColor]);
 			CGContextRestoreGState(cref);
 		}

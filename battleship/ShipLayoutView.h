@@ -10,11 +10,9 @@
 #import "Ships.h"
 #import "GameRepo.h"
 #import "AppDelegate.h"
+#import "BBdefs.h"
 
 @class ShipPaletteView;
-
-#define NUMGRIDS 10.0
-#define GRIDSIZE 32.0
 
 @interface ShipLayoutView : UIView
 @property (nonatomic, weak) NSArray *theShips;

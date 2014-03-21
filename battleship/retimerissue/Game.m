@@ -18,13 +18,11 @@
 		self.isMyMove = YES;
 		self.timeLeft = 24.0 * 60.0 * 60.0; //number of seconds in a day
 		self.turnStartTime = [[NSDate alloc] init]; //initialized to current date and time
-		[self setOpponentNames:@[@"Todd"]];
 		[self setBoardMap:@"satelite_ocean_view_2.jpg"];
 		_myFleet = @[[[Ships alloc] init:2], [[Ships alloc] init:3], [[Ships alloc] init:3], [[Ships alloc] init:4], [[Ships alloc] init:5]];
 		
 		//myMoves;
-		//opponentShipLocations;
-		//opponentMoves;
+		//[self setOpponentNames:@[@"Todd"]];
 		
 	}
 	return self;
@@ -40,12 +38,10 @@
 		self.turnStartTime = [aDecoder decodeObjectForKey:@"turnStartTime"];
 		_myFleet = [aDecoder decodeObjectForKey:@"myFleet"];
 		
-		[self setOpponentNames:@[@"Todd"]];
 		[self setBoardMap:@"satelite_ocean_view_2.jpg"];
 		
 		//myMoves;
-		//opponentShipLocations;
-		//opponentMoves;
+		//[self setOpponentNames:@[@"Todd"]];
 	}
 	return self;
 }
