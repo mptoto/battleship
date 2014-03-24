@@ -2,8 +2,8 @@
 //  GamesListViewController.m
 //  battleship
 //
-//  Created by Matthew Toto on 11/27/13.
-//  Copyright (c) 2013 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 11/27/13.
+//  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
 #import "GamesListViewController.h"
@@ -13,7 +13,7 @@
 @implementation GamesListViewController
 
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -78,8 +78,7 @@
     static NSString *CellIdentifier = @"GameCell1";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
 	Game *current = [GameRepo sharedRepo].allGames[indexPath.section][indexPath.row];
-	//TODO
-    [cell.textLabel setText:@"Bruce"];
+    [cell.textLabel setText:current.playerName];
 
     //turn "turnNumber" into string
     NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %02.02d:%02.0d:%02.02d",[current turnNumber], (int)[current timeLeft]/(60*60), ((int)[current timeLeft]%(60*60))/60, ((int)[current timeLeft]%(60*60))%60];

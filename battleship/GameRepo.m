@@ -3,7 +3,7 @@
 //  battleship
 //
 //  Created by Michael Mayer on 2/22/14.
-//  Copyright (c) 2014 Matthew Toto. All rights reserved.
+//  Copyright (c) 2014 Michael M. Mayer. All rights reserved.
 //
 
 #import "GameRepo.h"
@@ -24,7 +24,7 @@
 	return [self sharedRepo];
 }
 
--(id)init
+-(instancetype)init
 {
 	self = [super init];
 	if(self) {

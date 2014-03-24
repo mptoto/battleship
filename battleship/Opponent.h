@@ -2,8 +2,8 @@
 //  Opponent.h
 //  battleship
 //
-//  Created by Michael Mayer on 3/9/14.
-//  Copyright (c) 2014 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 3/9/14.
+//  Copyright (c) 2014 Michael M. Mayer. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,6 +15,6 @@
 @property CGPoint *moves;
 @property int turnNumber;
 
--(id) init;
-- (CGPoint) newMove;
+-(instancetype) init;
+- (CGPoint) generateMove;
 @end

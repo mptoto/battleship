@@ -2,8 +2,8 @@
 //  Ships.m
 //  battleship
 //
-//  Created by Matthew Toto on 11/25/13.
-//  Copyright (c) 2013 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 11/25/13.
+//  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
 #import "Ships.h"
@@ -11,7 +11,7 @@
 
 @implementation Ships
 
-- (id) init:(int)size
+- (instancetype) init:(int)size
 {
 	self = [super init];
 	if (self) {
@@ -23,7 +23,7 @@
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super init];
 	if (self) {
@@ -68,13 +68,14 @@
 
 - (BOOL)isEqualToShip:(Ships *)ship {
 	//Compares properties and uses safe compare for the BOOLs
+	//Does not care if ship isPlaced or not
 	BOOL areEqual = YES;
 	if (!ship)
 		areEqual = NO;
 	else
 		areEqual = self.length == ship.length &&
 		self.start.x == ship.start.x && self.start.y == ship.start.y &&
-		((self.isPlaced && ship.isPlaced) || (!self.isPlaced && !ship.isPlaced)) &&
+//		((self.isPlaced && ship.isPlaced) || (!self.isPlaced && !ship.isPlaced)) &&
 		((self.isVertical == ship.isVertical) || (!self.isVertical == !ship.isVertical));
 
 	return areEqual;

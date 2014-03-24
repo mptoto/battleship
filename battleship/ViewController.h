@@ -2,8 +2,8 @@
 //  ViewController.h
 //  battleship
 //
-//  Created by Matthew Toto on 11/24/13.
-//  Copyright (c) 2013 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 11/24/13.
+//  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -20,7 +20,6 @@
 @property (nonatomic, strong) IBOutlet UITapGestureRecognizer *tapRecognizer;
 @property (weak, nonatomic) IBOutlet UILabel *CoordinatesSelectedField;
 @property (weak, nonatomic) IBOutlet UIImageView *pegView;
-
 @property (nonatomic, weak) Game *currGame;
 
 - (IBAction)firePressed:(id)sender;

@@ -33,6 +33,7 @@
 		C9A6A9F218443533003469EA /* ships.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9A6A9F118443533003469EA /* ships.plist */; };
 		C9B79DAF185A3C0A008382AC /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B79DAE185A3C0A008382AC /* PlayerViewController.m */; };
 		E320E7C518BDB38D00945107 /* PlaceShipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E320E7C418BDB38D00945107 /* PlaceShipsViewController.m */; };
+		E3A5F0D818E095D300161D79 /* AttacksByOpponentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A5F0D718E095D300161D79 /* AttacksByOpponentsView.m */; };
 		E3B1C45A18A97BC700134F41 /* ShipLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1C45918A97BC700134F41 /* ShipLayoutView.m */; };
 		E3B1C45D18AAD6EC00134F41 /* ShipPaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */; };
 		E3B6239918CD6FD300AF306F /* Opponent.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B6239818CD6FD300AF306F /* Opponent.m */; };
@@ -86,6 +87,8 @@
 		C9B79DAE185A3C0A008382AC /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		E320E7C318BDB37000945107 /* PlaceShipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceShipsViewController.h; sourceTree = "<group>"; };
 		E320E7C418BDB38D00945107 /* PlaceShipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceShipsViewController.m; sourceTree = "<group>"; };
+		E3A5F0D618E095D200161D79 /* AttacksByOpponentsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttacksByOpponentsView.h; sourceTree = "<group>"; };
+		E3A5F0D718E095D300161D79 /* AttacksByOpponentsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttacksByOpponentsView.m; sourceTree = "<group>"; };
 		E3B1C45818A97BC700134F41 /* ShipLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ShipLayoutView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E3B1C45918A97BC700134F41 /* ShipLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShipLayoutView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E3B1C45B18AAD6EC00134F41 /* ShipPaletteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipPaletteView.h; sourceTree = "<group>"; };
@@ -167,6 +170,8 @@
 				E3B1C45918A97BC700134F41 /* ShipLayoutView.m */,
 				E3B1C45B18AAD6EC00134F41 /* ShipPaletteView.h */,
 				E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */,
+				E3A5F0D618E095D200161D79 /* AttacksByOpponentsView.h */,
+				E3A5F0D718E095D300161D79 /* AttacksByOpponentsView.m */,
 				C97FCBB8187CDD47008BD1D5 /* Main.storyboard */,
 				C97FCBB2187CDD47008BD1D5 /* AppDelegate.h */,
 				C97FCBB3187CDD47008BD1D5 /* AppDelegate.m */,
@@ -174,8 +179,8 @@
 				C97FCBB5187CDD47008BD1D5 /* GamesListViewController.m */,
 				E320E7C318BDB37000945107 /* PlaceShipsViewController.h */,
 				E320E7C418BDB38D00945107 /* PlaceShipsViewController.m */,
-				C9B79DAE185A3C0A008382AC /* PlayerViewController.m */,
 				C9B79DAD185A3C0A008382AC /* PlayerViewController.h */,
+				C9B79DAE185A3C0A008382AC /* PlayerViewController.m */,
 				C9A6A9CE1842DCAE003469EA /* ViewController.h */,
 				C9A6A9CF1842DCAE003469EA /* ViewController.m */,
 				C9A6A9D11842DCAE003469EA /* Images.xcassets */,
@@ -333,6 +338,7 @@
 				C97FCBBA187CDD47008BD1D5 /* GamesListViewController.m in Sources */,
 				C97FCBBB187CDD47008BD1D5 /* Game.m in Sources */,
 				C9A6A9F0184432D7003469EA /* Ships.m in Sources */,
+				E3A5F0D818E095D300161D79 /* AttacksByOpponentsView.m in Sources */,
 				E320E7C518BDB38D00945107 /* PlaceShipsViewController.m in Sources */,
 				C97FCBB9187CDD47008BD1D5 /* AppDelegate.m in Sources */,
 				C9A6A9C61842DCAE003469EA /* main.m in Sources */,
@@ -452,6 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "battleship/battleship-Prefix.pch";
 				INFOPLIST_FILE = "battleship/battleship-Info.plist";
@@ -467,6 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "battleship/battleship-Prefix.pch";
 				INFOPLIST_FILE = "battleship/battleship-Info.plist";

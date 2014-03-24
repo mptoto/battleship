@@ -2,29 +2,29 @@
 //  Opponent.m
 //  battleship
 //
-//  Created by Michael Mayer on 3/9/14.
-//  Copyright (c) 2014 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 3/9/14.
+//  Copyright (c) 2014 Michael M. Mayer. All rights reserved.
 //
 
 #import "Opponent.h"
 #import "Ships.h"
 
 @implementation Opponent
-CGPoint *moves;
 
-- (id) init
+- (instancetype) init
 {
 	self = [super init];
 	if(self) {
 		self.turnNumber = 0;
 		self.name = [NSString stringWithFormat:@"Bruce%d", arc4random_uniform(1000)];
 		self.fleet = @[[[Ships alloc] init:2], [[Ships alloc] init:3], [[Ships alloc] init:3], [[Ships alloc] init:4], [[Ships alloc] init:5]];
+		[self generateFleet];
 		self.moves = malloc(sizeof(CGPoint) * 100);
 	}
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
 //	@property (nonatomic, copy) NSString *name;
 //	@property (nonatomic, strong) NSArray *fleet;
@@ -50,8 +50,18 @@ CGPoint *moves;
 	[aCoder encodeArrayOfObjCType:@encode(CGPoint) count:self.turnNumber at:self.moves];	
 }
 
+- (void)generateFleet
+{
+	for(Ships *possShip in self.fleet) {
+		do {
+			possShip.start = CGPointMake(arc4random_uniform(NUMGRIDS), arc4random_uniform(NUMGRIDS));
+			possShip.isVertical = arc4random_uniform(2);
+		} while (![possShip canShipBePlaced:self.fleet]);
+		possShip.isPlaced = YES;
+	}
+}
 
--(CGPoint)newMove
+-(CGPoint)generateMove
 // adds newMove to current turnNumber (does not change turnNumber)
 {
 	CGPoint move;
@@ -60,8 +70,8 @@ CGPoint *moves;
 		move = CGPointMake(arc4random_uniform(NUMGRIDS), arc4random_uniform(NUMGRIDS));
 		moveFound = YES;
 		for (int i = 0; i < self.turnNumber; i++) {
-			CGPoint prevMove = self.moves[i];
-			if(move.x == prevMove.x && move.y == prevMove.y) {
+			CGPoint previousMove = self.moves[i];
+			if(move.x == previousMove.x && move.y == previousMove.y) {
 				moveFound = NO;
 				break; //for
 			}

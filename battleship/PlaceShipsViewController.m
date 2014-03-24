@@ -2,8 +2,8 @@
 //  ViewController.m
 //  battleship
 //
-//  Created by Matthew Toto on 11/24/13.
-//  Copyright (c) 2013 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 11/24/13.
+//  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
 #import "PlaceShipsViewController.h"
@@ -28,15 +28,21 @@
 
 //Place or remove ship on the Gesture
 -(void) placeShip:(UIPanGestureRecognizer *)recognizer {
+	CGFloat gridWidth = self.overlayView.bounds.size.width / NUMGRIDS;
+	CGFloat gridHeight = self.overlayView.bounds.size.height / NUMGRIDS;
     CGPoint location = [recognizer locationInView:self.overlayView];
+
 	if ([(UIPanGestureRecognizer*)recognizer state] == UIGestureRecognizerStateBegan) {
-        self.start = CGPointMake(floorf(location.x / GRIDSIZE), floorf(location.y /GRIDSIZE));
+        self.start = CGPointMake(floorf(location.x / gridWidth), floorf(location.y /gridHeight));
+		NSLog(@"%.2lf, %.2lf : %.2lf, %.2lf", location.x, location.y, self.start.x, self.start.y);
     }
 	else if ([(UIPanGestureRecognizer*)recognizer state] == UIGestureRecognizerStateChanged) {
-		self.currLoc = CGPointMake(floorf(location.x / GRIDSIZE), floorf(location.y /GRIDSIZE));
+		self.currLoc = CGPointMake(floorf(location.x / gridWidth), floorf(location.y /gridHeight));
 	}
 	else if ([(UIPanGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
-		self.currLoc = CGPointMake(floorf(location.x / GRIDSIZE), floorf(location.y /GRIDSIZE));
+		self.currLoc = CGPointMake(floorf(location.x / gridWidth), floorf(location.y /gridHeight));
+		NSLog(@"%.2lf, %.2lf : %.2lf, %.2lf", location.x, location.y, self.currLoc.x, self.currLoc.y);
+
 		//if gesture was a straight line and length was valid for a ship
 		if ((self.start.x == self.currLoc.x && fabs(self.start.y - self.currLoc.y) >= 1 && abs(self.start.y - self.currLoc.y) < 5)  ||
 			(self.start.y == self.currLoc.y && fabs(self.start.x - self.currLoc.x) >= 1 && abs(self.start.x - self.currLoc.x) < 5))

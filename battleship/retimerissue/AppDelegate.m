@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  battleship
 //
-//  Created by Matthew Toto on 11/24/13.
-//  Copyright (c) 2013 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 11/24/13.
+//  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
 #import "AppDelegate.h"

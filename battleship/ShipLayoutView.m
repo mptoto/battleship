@@ -3,7 +3,7 @@
 //  battleship
 //
 //  Created by Michael Mayer on 2/10/14.
-//  Copyright (c) 2014 Matthew Toto. All rights reserved.
+//  Copyright (c) 2014 Michael M. Mayer. All rights reserved.
 //
 
 #import "ShipLayoutView.h"
@@ -11,7 +11,7 @@
 
 @implementation ShipLayoutView
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -28,7 +28,6 @@
 - (void)drawRect:(CGRect)rect
 {
 	CGContextRef cref = UIGraphicsGetCurrentContext();
-	//	CGPoint center = CGPointMake(self.bounds.origin.x + self.bounds.size.width / 2.0, self.bounds.origin.y + self.bounds.size.height / 2.0);
 	CGSize gridSize = CGSizeMake(self.bounds.size.width / NUMGRIDS, self.bounds.size.height / NUMGRIDS);
 
 	// Draw grid
@@ -56,7 +55,7 @@
 		if (aShip.isPlaced) {
 			CGContextSaveGState(cref);
 			CGContextMoveToPoint(cref, aShip.start.x * gridSize.width + gridSize.width * 0.05, (aShip.start.y + 1) * gridSize.height - gridSize.height * 0.05);
-			drawShip(aShip.length, gridSize, aShip.isVertical, YES, [UIColor orangeColor]);
+			drawShip(aShip.length, gridSize, aShip.isVertical, YES, [UIColor lightGrayColor]);
 			CGContextRestoreGState(cref);
 		}
 	}

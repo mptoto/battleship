@@ -2,8 +2,8 @@
 //  ViewController.m
 //  battleship
 //
-//  Created by Matthew Toto on 11/24/13.
-//  Copyright (c) 2013 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 11/24/13.
+//  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -14,37 +14,31 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     PlayerViewController *destVC = [segue destinationViewController];
 	destVC.currGame = self.currGame;
-    [destVC setTitle:@"Against todd"];
+    [destVC setTitle:@"Player's Status"];
 }
 
 - (void)viewDidLoad
 {
     //This title will use a placeholder to import the opponentsName field.
-    [self setTitle:@"Opponents Board"];
-	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showGestureForTapRecognizer:)];
-     [self.boardImage addGestureRecognizer:tapRecognizer];
-
+    [self setTitle:@"Opponents' Status"];
 }
 
 //Action taken on the Gesture
 -(IBAction)showGestureForTapRecognizer:(UITapGestureRecognizer *)recognizer {
     CGPoint location = [recognizer locationInView:self.boardImage];
-    //Michael's code to find the touch point and translate into 10x10 grid
-	location.x =(int)floorf(location.x / (self.boardImage.bounds.size.width / 10));
-	location.y=(int)floorf(location.y / (self.boardImage.bounds.size.height / 10));
+
+	location.x =(int)floorf(location.x / (self.boardImage.bounds.size.width / NUMGRIDS));
+	location.y=(int)floorf(location.y / (self.boardImage.bounds.size.height / NUMGRIDS));
     //Convert gridIndex Int into a string
     NSString *gridIndexString = [NSString stringWithFormat:@"%.0lf, %.0lf", location.x, location.y];
     //Show tapped coordinates
     self.CoordinatesSelectedField.text = gridIndexString;
 	
-	CGFloat modX = (int)location.x * (int)(self.boardImage.bounds.size.width / 10) + (int)(self.boardImage.bounds.size.width / 20);
-	CGFloat modY = (int)location.y * (int)(self.boardImage.bounds.size.height / 10) + (int)(self.boardImage.bounds.size.height / 20);
+	CGFloat modX = (int)location.x * (int)(self.boardImage.bounds.size.width / NUMGRIDS) + (int)(self.boardImage.bounds.size.width / (NUMGRIDS * 2));
+	CGFloat modY = (int)location.y * (int)(self.boardImage.bounds.size.height / NUMGRIDS) + (int)(self.boardImage.bounds.size.height / (NUMGRIDS * 2));
 	
     //Draw the peg
     [self drawImageForGestureRecognizer:recognizer atPoint:CGPointMake(modX, modY)];
-	//    [UIView animateWithDuration:1.0 animations:^{
-	//        self.pegView.alpha = 0.0;
-	//  }];
 }
 
 //Insert pin picture on board where it's touched.  This will be changed to an if statement to determine color of pin.
