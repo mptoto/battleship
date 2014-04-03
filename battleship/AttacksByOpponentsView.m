@@ -8,6 +8,7 @@
 
 #import "AttacksByOpponentsView.h"
 #import "BBdefs.h"
+#import "Player.h"
 
 @implementation AttacksByOpponentsView
 
@@ -15,39 +16,41 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+		self.results = NULL;
+		self.splash = [UIImage imageNamed:@"splash"];
+		self.explosion = [UIImage imageNamed:@"explosion"];
     }
     return self;
 }
 
-//- (void) awakeFromNib
-//{
-//	[self setAlpha:0.5];
-//}
-
 - (void)drawRect:(CGRect)rect
 {
-	UIImage *splat = [UIImage imageNamed:@"splash"];
-	UIImage *explosion = [UIImage imageNamed:@"explosion"];
 	CGContextRef cref = UIGraphicsGetCurrentContext();
 	CGSize gridSize = CGSizeMake(self.bounds.size.width / NUMGRIDS, self.bounds.size.height / NUMGRIDS);
 	CGRect imageRect = CGRectMake(0, 0, gridSize.width, gridSize.height);
 	CGContextSaveGState(cref);
-
 	for(int i = 0; i < NUMGRIDS; i++) {
 		for (int j = 0; j < NUMGRIDS; j++) {
-			imageRect.origin.x = j*gridSize.width;
-			imageRect.origin.y = i*gridSize.height;
-			if (arc4random_uniform(2)) {
-				if (arc4random_uniform(2))
-					[splat drawInRect:imageRect];
-				else
-					[explosion drawInRect:imageRect];
+			int index = i*NUMGRIDS+j;
+			if (_results[index] != NOATTACK) {
+				imageRect.origin.x = j*gridSize.width;
+				imageRect.origin.y = i*gridSize.height;
+				if (_results[index] == MISS)
+						[self.splash drawInRect:imageRect];
+					else
+						[self.explosion drawInRect:imageRect];
 			}
 		}
 	}
 	CGContextRestoreGState(cref);
+}
 
+-(void)dealloc
+{
+	NSLog(@"Dealloc: Getting rid of an AttacksByOpponentsView");
+	if (_results) {
+		free(_results);
+	}
 }
 
 

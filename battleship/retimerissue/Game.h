@@ -7,22 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Ships.h"
-#import "Opponent.h"
+#import "Ship.h"
+#import "Player.h"
 
 @interface Game : NSObject <NSCoding>
 
-@property (nonatomic, copy) NSString *playerName;
 @property int turnNumber;
 @property BOOL isMyMove;
 @property NSTimeInterval timeLeft;
 @property (nonatomic, strong) NSDate *turnStartTime;
 @property (nonatomic, strong) NSString *boardMap;
-@property (nonatomic, strong) NSArray *myFleet;
-@property (nonatomic, strong) NSArray *myMoves;
-@property (nonatomic, strong) NSArray *opponents;
-
+@property (nonatomic, strong) NSMutableArray *players;
 
 - (instancetype) init;
+- (void)generateTurn;
 
 @end

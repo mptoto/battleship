@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PlaceShipsViewController.h
 //  battleship
 //
 //  Created by Michael M. Mayer on 11/24/13.
@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Ships.h"
+#import "Ship.h"
 #import "Game.h"
 #import "GameRepo.h"
 #import "GamesListViewController.h"

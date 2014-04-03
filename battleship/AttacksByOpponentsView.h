@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AttacksByOpponentsView : UIView
-@property (nonatomic) NSArray *opponents;
-
-
+@property (nonatomic, strong) UIImage *splash;
+@property (nonatomic, strong) UIImage *explosion;
+@property (nonatomic) int *results;
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ShipLayoutView.h"
-#import "Ships.h"
+#import "Ship.h"
 
 
 @interface ShipPaletteView : UIView

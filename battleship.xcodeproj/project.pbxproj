@@ -22,21 +22,22 @@
 		C9A6A9BE1842DCAE003469EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A6A9BD1842DCAE003469EA /* UIKit.framework */; };
 		C9A6A9C41842DCAE003469EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A6A9C21842DCAE003469EA /* InfoPlist.strings */; };
 		C9A6A9C61842DCAE003469EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A6A9C51842DCAE003469EA /* main.m */; };
-		C9A6A9D01842DCAE003469EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A6A9CF1842DCAE003469EA /* ViewController.m */; };
+		C9A6A9D01842DCAE003469EA /* AttackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A6A9CF1842DCAE003469EA /* AttackViewController.m */; };
 		C9A6A9D21842DCAE003469EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9A6A9D11842DCAE003469EA /* Images.xcassets */; };
 		C9A6A9D91842DCAE003469EA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A6A9D81842DCAE003469EA /* XCTest.framework */; };
 		C9A6A9DA1842DCAE003469EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A6A9B91842DCAE003469EA /* Foundation.framework */; };
 		C9A6A9DB1842DCAE003469EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A6A9BD1842DCAE003469EA /* UIKit.framework */; };
 		C9A6A9E31842DCAE003469EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A6A9E11842DCAE003469EA /* InfoPlist.strings */; };
 		C9A6A9E51842DCAE003469EA /* battleshipTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A6A9E41842DCAE003469EA /* battleshipTests.m */; };
-		C9A6A9F0184432D7003469EA /* Ships.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A6A9EF184432D7003469EA /* Ships.m */; };
+		C9A6A9F0184432D7003469EA /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A6A9EF184432D7003469EA /* Ship.m */; };
 		C9A6A9F218443533003469EA /* ships.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9A6A9F118443533003469EA /* ships.plist */; };
 		C9B79DAF185A3C0A008382AC /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B79DAE185A3C0A008382AC /* PlayerViewController.m */; };
 		E320E7C518BDB38D00945107 /* PlaceShipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E320E7C418BDB38D00945107 /* PlaceShipsViewController.m */; };
 		E3A5F0D818E095D300161D79 /* AttacksByOpponentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A5F0D718E095D300161D79 /* AttacksByOpponentsView.m */; };
+		E3A5F0DB18E0F64500161D79 /* AttackResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A5F0DA18E0F64500161D79 /* AttackResultsView.m */; };
 		E3B1C45A18A97BC700134F41 /* ShipLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1C45918A97BC700134F41 /* ShipLayoutView.m */; };
 		E3B1C45D18AAD6EC00134F41 /* ShipPaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */; };
-		E3B6239918CD6FD300AF306F /* Opponent.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B6239818CD6FD300AF306F /* Opponent.m */; };
+		E3B6239918CD6FD300AF306F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = E3B6239818CD6FD300AF306F /* Player.m */; };
 		E3F8A1EE18B9241200A048C1 /* GameRepo.m in Sources */ = {isa = PBXBuildFile; fileRef = E3F8A1ED18B9241200A048C1 /* GameRepo.m */; };
 /* End PBXBuildFile section */
 
@@ -72,16 +73,16 @@
 		C9A6A9C31842DCAE003469EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9A6A9C51842DCAE003469EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9A6A9C71842DCAE003469EA /* battleship-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "battleship-Prefix.pch"; sourceTree = "<group>"; };
-		C9A6A9CE1842DCAE003469EA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C9A6A9CF1842DCAE003469EA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C9A6A9CE1842DCAE003469EA /* AttackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttackViewController.h; sourceTree = "<group>"; };
+		C9A6A9CF1842DCAE003469EA /* AttackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttackViewController.m; sourceTree = "<group>"; };
 		C9A6A9D11842DCAE003469EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9A6A9D71842DCAE003469EA /* battleshipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = battleshipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A6A9D81842DCAE003469EA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C9A6A9E01842DCAE003469EA /* battleshipTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "battleshipTests-Info.plist"; sourceTree = "<group>"; };
 		C9A6A9E21842DCAE003469EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9A6A9E41842DCAE003469EA /* battleshipTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = battleshipTests.m; sourceTree = "<group>"; };
-		C9A6A9EE184432D7003469EA /* Ships.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ships.h; sourceTree = "<group>"; };
-		C9A6A9EF184432D7003469EA /* Ships.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ships.m; sourceTree = "<group>"; };
+		C9A6A9EE184432D7003469EA /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
+		C9A6A9EF184432D7003469EA /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		C9A6A9F118443533003469EA /* ships.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ships.plist; sourceTree = "<group>"; };
 		C9B79DAD185A3C0A008382AC /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		C9B79DAE185A3C0A008382AC /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
@@ -89,12 +90,14 @@
 		E320E7C418BDB38D00945107 /* PlaceShipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceShipsViewController.m; sourceTree = "<group>"; };
 		E3A5F0D618E095D200161D79 /* AttacksByOpponentsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttacksByOpponentsView.h; sourceTree = "<group>"; };
 		E3A5F0D718E095D300161D79 /* AttacksByOpponentsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttacksByOpponentsView.m; sourceTree = "<group>"; };
+		E3A5F0D918E0F64500161D79 /* AttackResultsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttackResultsView.h; sourceTree = "<group>"; };
+		E3A5F0DA18E0F64500161D79 /* AttackResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttackResultsView.m; sourceTree = "<group>"; };
 		E3B1C45818A97BC700134F41 /* ShipLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ShipLayoutView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		E3B1C45918A97BC700134F41 /* ShipLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShipLayoutView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E3B1C45B18AAD6EC00134F41 /* ShipPaletteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipPaletteView.h; sourceTree = "<group>"; };
 		E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ShipPaletteView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		E3B6239718CD6FD300AF306F /* Opponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Opponent.h; sourceTree = "<group>"; };
-		E3B6239818CD6FD300AF306F /* Opponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Opponent.m; sourceTree = "<group>"; };
+		E3B6239718CD6FD300AF306F /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		E3B6239818CD6FD300AF306F /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		E3B6239A18CE406E00AF306F /* BBdefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBdefs.h; sourceTree = "<group>"; };
 		E3F8A1EC18B9241200A048C1 /* GameRepo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameRepo.h; sourceTree = "<group>"; };
 		E3F8A1ED18B9241200A048C1 /* GameRepo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameRepo.m; sourceTree = "<group>"; };
@@ -158,10 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				E3B6239A18CE406E00AF306F /* BBdefs.h */,
-				E3B6239718CD6FD300AF306F /* Opponent.h */,
-				E3B6239818CD6FD300AF306F /* Opponent.m */,
-				C9A6A9EE184432D7003469EA /* Ships.h */,
-				C9A6A9EF184432D7003469EA /* Ships.m */,
+				E3B6239718CD6FD300AF306F /* Player.h */,
+				E3B6239818CD6FD300AF306F /* Player.m */,
+				C9A6A9EE184432D7003469EA /* Ship.h */,
+				C9A6A9EF184432D7003469EA /* Ship.m */,
 				C97FCBB6187CDD47008BD1D5 /* Game.h */,
 				C97FCBB7187CDD47008BD1D5 /* Game.m */,
 				E3F8A1EC18B9241200A048C1 /* GameRepo.h */,
@@ -170,6 +173,8 @@
 				E3B1C45918A97BC700134F41 /* ShipLayoutView.m */,
 				E3B1C45B18AAD6EC00134F41 /* ShipPaletteView.h */,
 				E3B1C45C18AAD6EC00134F41 /* ShipPaletteView.m */,
+				E3A5F0D918E0F64500161D79 /* AttackResultsView.h */,
+				E3A5F0DA18E0F64500161D79 /* AttackResultsView.m */,
 				E3A5F0D618E095D200161D79 /* AttacksByOpponentsView.h */,
 				E3A5F0D718E095D300161D79 /* AttacksByOpponentsView.m */,
 				C97FCBB8187CDD47008BD1D5 /* Main.storyboard */,
@@ -179,10 +184,10 @@
 				C97FCBB5187CDD47008BD1D5 /* GamesListViewController.m */,
 				E320E7C318BDB37000945107 /* PlaceShipsViewController.h */,
 				E320E7C418BDB38D00945107 /* PlaceShipsViewController.m */,
+				C9A6A9CE1842DCAE003469EA /* AttackViewController.h */,
+				C9A6A9CF1842DCAE003469EA /* AttackViewController.m */,
 				C9B79DAD185A3C0A008382AC /* PlayerViewController.h */,
 				C9B79DAE185A3C0A008382AC /* PlayerViewController.m */,
-				C9A6A9CE1842DCAE003469EA /* ViewController.h */,
-				C9A6A9CF1842DCAE003469EA /* ViewController.m */,
 				C9A6A9D11842DCAE003469EA /* Images.xcassets */,
 				C9A6A9C01842DCAE003469EA /* Supporting Files */,
 			);
@@ -333,11 +338,12 @@
 				E3F8A1EE18B9241200A048C1 /* GameRepo.m in Sources */,
 				E3B1C45D18AAD6EC00134F41 /* ShipPaletteView.m in Sources */,
 				C9B79DAF185A3C0A008382AC /* PlayerViewController.m in Sources */,
-				E3B6239918CD6FD300AF306F /* Opponent.m in Sources */,
-				C9A6A9D01842DCAE003469EA /* ViewController.m in Sources */,
+				E3B6239918CD6FD300AF306F /* Player.m in Sources */,
+				C9A6A9D01842DCAE003469EA /* AttackViewController.m in Sources */,
 				C97FCBBA187CDD47008BD1D5 /* GamesListViewController.m in Sources */,
+				E3A5F0DB18E0F64500161D79 /* AttackResultsView.m in Sources */,
 				C97FCBBB187CDD47008BD1D5 /* Game.m in Sources */,
-				C9A6A9F0184432D7003469EA /* Ships.m in Sources */,
+				C9A6A9F0184432D7003469EA /* Ship.m in Sources */,
 				E3A5F0D818E095D300161D79 /* AttacksByOpponentsView.m in Sources */,
 				E320E7C518BDB38D00945107 /* PlaceShipsViewController.m in Sources */,
 				C97FCBB9187CDD47008BD1D5 /* AppDelegate.m in Sources */,

@@ -1,15 +1,15 @@
 //
-//  Ships.m
+//  Ship.m
 //  battleship
 //
 //  Created by Michael M. Mayer on 11/25/13.
 //  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
-#import "Ships.h"
+#import "Ship.h"
 #import "BBdefs.h"
 
-@implementation Ships
+@implementation Ship
 
 - (instancetype) init:(int)size
 {
@@ -55,7 +55,7 @@
 	
 	//ship overlaps any other ship in the fleet that has been placed
 	else {
-		for (Ships *aShip in fleet) {
+		for (Ship *aShip in fleet) {
 			if (aShip.isPlaced &&  ![self isEqual:aShip] && doShipsIntersect(aShip.start.x, aShip.start.y, [aShip endX], [aShip endY], self.start.x, self.start.y, [self endX], [self endY])) {
 				isShipValid = NO;
 				break;
@@ -66,7 +66,12 @@
 	return isShipValid;
 }
 
-- (BOOL)isEqualToShip:(Ships *)ship {
+-(BOOL)isHit:(CGPoint)attack
+{
+	return doShipsIntersect(attack.x, attack.y, attack.x, attack.y, self.start.x, self.start.y, [self endX], [self endY]);
+}
+
+- (BOOL)isEqualToShip:(Ship *)ship {
 	//Compares properties and uses safe compare for the BOOLs
 	//Does not care if ship isPlaced or not
 	BOOL areEqual = YES;
@@ -85,9 +90,9 @@
 	BOOL areEqual;
 	if (self == ship)
 		areEqual = YES;
-	else if (![ship isKindOfClass:[Ships class]])
+	else if (![ship isKindOfClass:[Ship class]])
 		areEqual =  NO;
-	else areEqual = [self isEqualToShip:(Ships *)ship];
+	else areEqual = [self isEqualToShip:(Ship *)ship];
 	
 	return areEqual;
 }
@@ -106,7 +111,9 @@
 }
 
 // http://ptspts.blogspot.com/2010/06/how-to-determine-if-two-line-segments.html
-// fast schoolbook algorithm for determining if two (finite) line segments on a 2D plane intersect (cross)
+// fast schoolbook algorithm for determining if two (finite) line segments on a 2D plane intersect (cross) or
+// overlap.  Could be significantly simplified because we only have vertical/horizontal lines and we
+// normalize lines to always start in the lower (higher y) left (lower x)
 static bool IsOnSegment(double xi, double yi, double xj, double yj,
                         double xk, double yk) {
 	return (xi <= xk || xj <= xk) && (xk <= xi || xk <= xj) &&

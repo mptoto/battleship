@@ -22,8 +22,8 @@
     [panRecognizer setMinimumNumberOfTouches:1];
     [panRecognizer setMaximumNumberOfTouches:1];
     [self.overlayView addGestureRecognizer:panRecognizer];
-	[self.overlayView setTheShips:self.currGame.myFleet];
-	[self.paletteView setTheShips:self.currGame.myFleet];
+	[self.overlayView setTheShips:[self.currGame.players[LOCALPLAYER] fleet]];
+	[self.paletteView setTheShips:[self.currGame.players[LOCALPLAYER] fleet]];
 }
 
 //Place or remove ship on the Gesture
@@ -54,14 +54,14 @@
 			normalizedStartPoint.x = self.start.x < self.currLoc.x ? self.start.x : self.currLoc.x;
 			normalizedStartPoint.y = self.start.y < self.currLoc.y ? self.currLoc.y : self.start.y;
 
-			NSArray *theShips = self.currGame.myFleet;
-			Ships *possShip = [[Ships alloc]init:length];
+			NSArray *theShips = [self.currGame.players[LOCALPLAYER] fleet];
+			Ship *possShip = [[Ship alloc]init:length];
 			possShip.isVertical = isPanVertical;
 			possShip.start = normalizedStartPoint;
 			possShip.isPlaced = YES;
 			if ([possShip canShipBePlaced:theShips]) {
 				
-				for (Ships *aShip in theShips) {
+				for (Ship *aShip in theShips) {
 					if (aShip.isPlaced && aShip.start.x == normalizedStartPoint.x && aShip.start.y == normalizedStartPoint.y && (aShip.isVertical == isPanVertical) && length == aShip.length) {
 						aShip.isPlaced = NO;
 						NSLog(@"Ship of length:%d should be removed", length);
@@ -75,7 +75,7 @@
 					}
 				}
 				BOOL notAllPlaced = NO;
-				for (Ships *aShip in theShips) {
+				for (Ship *aShip in theShips) {
 					if (!aShip.isPlaced) {
 						notAllPlaced = YES;
 						break;
@@ -92,6 +92,12 @@
 
 -(IBAction)startGame:(id)sender
 {
+	int numOpponents = arc4random_uniform(MAXPLAYERS-1)+1;
+	for (int i = 0; i < numOpponents; i++) {
+		Player *newOpp = [[Player alloc] init];
+		[newOpp generateFleet];
+		[self.currGame.players addObject:newOpp];
+	}
 	[self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

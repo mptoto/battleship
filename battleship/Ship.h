@@ -1,5 +1,5 @@
 //
-//  Ships.h
+//  Ship.h
 //  battleship
 //
 //  Created by Michael M. Mayer on 11/25/13.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Ships : NSObject <NSCoding>
+@interface Ship : NSObject <NSCoding>
 
 @property (readonly) unsigned long length;
 @property CGPoint start;
@@ -18,6 +18,6 @@
 
 -(instancetype) init:(int)size;
 - (BOOL)canShipBePlaced:(NSArray *)fleet;
-
+-(BOOL)isHit:(CGPoint)attack;
 
 @end

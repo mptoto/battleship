@@ -7,7 +7,8 @@
 //
 
 #import "GamesListViewController.h"
-#import "ViewController.h"
+#import "AttackViewController.h"
+#import "PlaceShipsViewController.h"
 #import "Game.h"
 
 @implementation GamesListViewController
@@ -77,15 +78,15 @@
 {
     static NSString *CellIdentifier = @"GameCell1";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
-	Game *current = [GameRepo sharedRepo].allGames[indexPath.section][indexPath.row];
-    [cell.textLabel setText:current.playerName];
+	Game *currGame = [GameRepo sharedRepo].allGames[indexPath.section][indexPath.row];
+    [cell.textLabel setText:[currGame.players[LOCALPLAYER] name]];
 
     //turn "turnNumber" into string
-    NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %02.02d:%02.0d:%02.02d",[current turnNumber], (int)[current timeLeft]/(60*60), ((int)[current timeLeft]%(60*60))/60, ((int)[current timeLeft]%(60*60))%60];
+    NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %02.02d:%02.0d:%02.02d",[currGame turnNumber], (int)[currGame timeLeft]/(60*60), ((int)[currGame timeLeft]%(60*60))/60, ((int)[currGame timeLeft]%(60*60))%60];
     [cell.detailTextLabel setText:turnNumberString];
 
     //set picture for cell
-    cell.imageView.image = [UIImage imageNamed:[current boardMap]];
+    cell.imageView.image = [UIImage imageNamed:[currGame boardMap]];
     
     return cell;
 }
@@ -124,14 +125,16 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	ViewController *destVC = [segue destinationViewController];
+	UIViewController *destVC = [segue destinationViewController];
 	if([segue.identifier isEqualToString:@"PlaceShips"]){
+		PlaceShipsViewController * psVC = (PlaceShipsViewController *)destVC;
 		Game *newGame = [[GameRepo sharedRepo] generateNewGame];
-		destVC.currGame = newGame;
+		psVC.currGame = newGame;
 	}
 	else {
+		AttackViewController * aVC = (AttackViewController *)destVC;
 		NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-		destVC.currGame = [[GameRepo sharedRepo] allGames][indexPath.section][indexPath.row];
+		aVC.currGame = [[GameRepo sharedRepo] allGames][indexPath.section][indexPath.row];
 	}
 }
 

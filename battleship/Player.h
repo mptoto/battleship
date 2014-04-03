@@ -1,5 +1,5 @@
 //
-//  Opponent.h
+//  Player.h
 //  battleship
 //
 //  Created by Michael M. Mayer on 3/9/14.
@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "BBdefs.h"
 
-@interface Opponent : NSObject
+@interface Player : NSObject <NSCoding>
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSArray *fleet;
 @property CGPoint *moves;
-@property int turnNumber;
 
--(instancetype) init;
-- (CGPoint) generateMove;
+- (instancetype) initWithName:(NSString *)name;
+-(CGPoint)generateMove:(int)turnNumber;
+- (void)generateFleet;
+
 @end

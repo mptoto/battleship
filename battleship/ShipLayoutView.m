@@ -51,7 +51,7 @@
 - (void) drawShips:(CGSize)gridSize
 {
 	CGContextRef cref = UIGraphicsGetCurrentContext();
-	for (Ships *aShip in self.theShips) {
+	for (Ship * aShip in self.theShips) {
 		if (aShip.isPlaced) {
 			CGContextSaveGState(cref);
 			CGContextMoveToPoint(cref, aShip.start.x * gridSize.width + gridSize.width * 0.05, (aShip.start.y + 1) * gridSize.height - gridSize.height * 0.05);

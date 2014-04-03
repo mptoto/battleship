@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Ships.h"
+#import "Ship.h"
 #import "GameRepo.h"
 #import "AppDelegate.h"
 #import "BBdefs.h"
