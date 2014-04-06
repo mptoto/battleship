@@ -29,10 +29,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *pegView;
 @property (nonatomic, weak) IBOutlet AttackResultsView *attackView;
 @property (nonatomic, weak) Game *currGame;
-@property (nonatomic) CGPoint attackLocation;
+@property (nonatomic) CGPoint attackLocation;  //TODO - Do I really need this property?
 
-- (IBAction)firePressed:(id)sender;
-
-//- (IBAction)colorPressed:(id)sender;
+-(IBAction)showAttackLocation:(UITapGestureRecognizer *)recognizer;
+-(IBAction)firePressed:(id)sender;
+-(void)drawImageAtAttackPoint:(CGPoint)location;
 
 @end

@@ -10,6 +10,7 @@
 #import "AttackViewController.h"
 #import "PlaceShipsViewController.h"
 #import "Game.h"
+#import "BBdefs.h"
 
 @implementation GamesListViewController
 
@@ -39,7 +40,12 @@
 			if(elapsedTime > SECS_IN_DAY)
 			{
 				int elapsedTurns = (int)elapsedTime / SECS_IN_DAY;
-				currGame.turnNumber += elapsedTurns;
+				for (int j=0; j < elapsedTurns; j++) {
+					if (currGame.isMyMove) {
+						[currGame.players[LOCALPLAYER] moves][currGame.turnNumber] = CGPointMake(INVALID_COORD, INVALID_COORD);
+					}
+					[currGame generateTurn];
+				}
 				elapsedTime = (int)elapsedTime % SECS_IN_DAY;
 				currGame.turnStartTime = [now dateByAddingTimeInterval:-elapsedTime];
 			}
@@ -82,7 +88,7 @@
     [cell.textLabel setText:[currGame.players[LOCALPLAYER] name]];
 
     //turn "turnNumber" into string
-    NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %02.02d:%02.0d:%02.02d",[currGame turnNumber], (int)[currGame timeLeft]/(60*60), ((int)[currGame timeLeft]%(60*60))/60, ((int)[currGame timeLeft]%(60*60))%60];
+    NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %2.02d:%2.02d:%2.02d",[currGame turnNumber], (int)[currGame timeLeft]/(60*60), ((int)[currGame timeLeft]%(60*60))/60, ((int)[currGame timeLeft]%(60*60))%60];
     [cell.detailTextLabel setText:turnNumberString];
 
     //set picture for cell

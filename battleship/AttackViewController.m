@@ -17,29 +17,51 @@
     [destVC setTitle:@"Player's Status"];
 }
 
-- (void)viewDidLoad
-{
-    [self setTitle:@"Opponents' Status"];
-    self.pegView.image = [UIImage imageNamed:@"circle_white_15x15.png"];
-	[self.pegView setHidden:YES];
-	[self.fireButton setHidden:YES];
-	[self.turnLabel setText:[NSString stringWithFormat:@"%d", self.currGame.turnNumber]];
-	[super viewDidLoad];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [self setTitle:@"Opponents' Status"];
-    self.pegView.image = [UIImage imageNamed:@"circle_white_15x15.png"];
+    self.pegView.image = [UIImage imageNamed:@"sniper target.png"];
 	[self.pegView setHidden:YES];
 	[self.fireButton setHidden:YES];
-	[self.turnLabel setText:[NSString stringWithFormat:@"%d", self.currGame.turnNumber]];
+	[self.turnLabel setText:[NSString stringWithFormat:@"Current Turn:%d", self.currGame.turnNumber]];
+	[self.coordinatesLabel setText:@"Coordinates:"];
+	[self.opp1Label setText:@""];
+	[self.opp2Label setText:@""];
+	[self.opp3Label setText:@""];
+	[self.opp4Label setText:@""];
+	int *results = calloc(MAXMOVES, sizeof(int));
+
+	CGPoint *localMoves = [self.currGame.players[LOCALPLAYER] moves];
+	NSMutableSet *allOppAtacks = [NSMutableSet set];
+	for (int i = 0; i < self.currGame.turnNumber; i++) {
+		int index = (int)localMoves[i].y * NUMGRIDS + (int)localMoves[i].x;
+		BOOL skippedLocalPlayer = NO;
+		for (Player *opp in self.currGame.players) {
+			if (!skippedLocalPlayer) {
+				skippedLocalPlayer = YES;
+			}
+			else {
+				for (Ship *aShip in opp.fleet) {
+					if ([aShip isHit:localMoves[i]] && ![allOppAtacks containsObject:[NSValue valueWithCGPoint:localMoves[i]]]) {
+						results[index] = HIT;
+					}
+					else if (results[index] != HIT) {
+						results[index] = MISS;
+					}
+				}
+				[allOppAtacks addObject:[NSValue valueWithCGPoint:opp.moves[i]]];
+			}
+		}
+	}
+	if(self.attackView.results)
+		free(self.attackView.results);
+	self.attackView.results = results;
 }
 
 -(IBAction)showAttackLocation:(UITapGestureRecognizer *)recognizer {
 	CGPoint location = [recognizer locationInView:self.attackView];
 	location.x =(int)floorf(location.x / (self.attackView.bounds.size.width / NUMGRIDS));
 	location.y=(int)floorf(location.y / (self.attackView.bounds.size.height / NUMGRIDS));
-    [self.coordinatesLabel setText:[NSString stringWithFormat:@"%c%d", XLEGEND[(int)location.x], (int)location.y]];
+    [self.coordinatesLabel setText:[NSString stringWithFormat:@"Coordinates:%c%d", XLEGEND[(int)location.x], (int)location.y]];
 	BOOL isValidAttack = YES;
 	CGPoint *currMoves = [self.currGame.players[0] moves];
 	for (int i = 0; i < self.currGame.turnNumber; i++) {
@@ -50,24 +72,25 @@
 	}
 	if(isValidAttack) {
 		self.attackLocation = location;
-		CGFloat modX = (int)location.x * (int)(self.attackView.bounds.size.width / NUMGRIDS) + (int)(self.attackView.bounds.size.width / (NUMGRIDS * 2));
-		CGFloat modY = (int)location.y * (int)(self.attackView.bounds.size.height / NUMGRIDS) + (int)(self.attackView.bounds.size.height / (NUMGRIDS * 2));
-		//Update Info for opps being attacked
-		//Draw the peg
-		[self drawImageAtAttackPoint:CGPointMake(modX, modY)];
+		[self drawImageAtAttackPoint:location];
+		[self.pegView setHidden:NO];
 		[self.fireButton setHidden:NO];
+		[self.view setNeedsDisplay];
 	}
 	else {
-		//TODO - At this time, do nothing if attack is not a vaild move
+		//TODO - Show results of previous attacks
 	}
 }
 
--(void)drawImageAtAttackPoint:(CGPoint)centerPoint {
+-(void)drawImageAtAttackPoint:(CGPoint)location
+{
 	//Draw attack image on board where it's touched
-    CGPoint convertedPoint = [[self view] convertPoint:centerPoint fromView:self.boardImage];
-    self.pegView.center = convertedPoint;
+	CGFloat centerX = (int)location.x * (int)(self.attackView.bounds.size.width / NUMGRIDS) + (int)(self.attackView.bounds.size.width / (NUMGRIDS * 2));
+	CGFloat centerY = (int)location.y * (int)(self.attackView.bounds.size.height / NUMGRIDS) + (int)(self.attackView.bounds.size.height / (NUMGRIDS * 2));
+	//Update Info for opps being attacked
+	//Draw the peg
+    self.pegView.center = CGPointMake(centerX, centerY);
     self.pegView.alpha = 1.0;
-	[self.pegView setHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,9 +105,8 @@
     [fireAlert show];
 	self.currGame.isMyMove = NO;
 	[self.currGame generateTurn];
-	[self dismissViewControllerAnimated:YES completion:nil];
+	[self viewWillAppear:YES];
+	[self.attackView setNeedsDisplay];
 }
-
-
 
 @end

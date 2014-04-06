@@ -11,20 +11,20 @@
 #import "AttackViewController.h"
 #import "GameRepo.h"
 #import "ShipLayoutView.h"
-#import "AttacksByOpponentsView.h"
+#import "AttackResultsView.h"
 #import "Player.h"
 #import "Game.h"
 
 @interface PlayerViewController : UIViewController
 @property (weak, nonatomic) IBOutlet ShipLayoutView *overlay;
-@property (weak, nonatomic) IBOutlet  AttacksByOpponentsView *attacksView;
-@property (nonatomic, weak) Game *currGame;
+@property (weak, nonatomic) IBOutlet  AttackResultsView *attacksView;
 @property (weak, nonatomic) IBOutlet UILabel *coordinatesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *turnLabel;
-@property (weak, nonatomic) IBOutlet UILabel *Opp1Label;
-@property (weak, nonatomic) IBOutlet UILabel *Opp2Label;
-@property (weak, nonatomic) IBOutlet UILabel *Opp3Label;
-@property (weak, nonatomic) IBOutlet UILabel *Opp4Label;
+@property (weak, nonatomic) IBOutlet UILabel *opp1Label;
+@property (weak, nonatomic) IBOutlet UILabel *opp2Label;
+@property (weak, nonatomic) IBOutlet UILabel *opp3Label;
+@property (weak, nonatomic) IBOutlet UILabel *opp4Label;
+@property (nonatomic, weak) Game *currGame;
 
 - (void)showAttacks:(id)recognizer;
 - (UIView *)viewWithTag:(int)tag;

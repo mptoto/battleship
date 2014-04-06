@@ -43,6 +43,7 @@
 		
 		[self setBoardMap:@"satelite_ocean_view_2.jpg"];
 	}
+	
 	return self;
 }
 
@@ -65,6 +66,7 @@
 		}
 	}
 	self.turnNumber++;
+	self.turnStartTime = [[NSDate alloc] init];
 	self.isMyMove = YES;
 }
 

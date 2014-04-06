@@ -21,12 +21,17 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
 	self.overlay.theShips = [self.currGame.players[LOCALPLAYER] fleet];
-	[self.turnLabel setText:[NSString stringWithFormat:@"%d", self.currGame.turnNumber]];
-	int *results = calloc(MAXMOVES, sizeof(int));
+	[self.turnLabel setText:[NSString stringWithFormat:@"Current Turn:%d", self.currGame.turnNumber]];
+	[self.coordinatesLabel setText:@"Coordinates:"];
+	[self.opp1Label setText:@""];
+	[self.opp2Label setText:@""];
+	[self.opp3Label setText:@""];
+	[self.opp4Label setText:@""];
+
+int *results = calloc(MAXMOVES, sizeof(int));
 
 	BOOL skippedLocalPlayer = NO;
 	for (Player *opp in self.currGame.players) {
@@ -35,13 +40,13 @@
 		}
 		else {
 			for (int i = 0; i < self.currGame.turnNumber; i++) {
-				int index = opp.moves[i].y * NUMGRIDS + (int)opp.moves[i].x;
+				int index = (int)opp.moves[i].y * NUMGRIDS + (int)opp.moves[i].x;
 				for (Ship *aShip in [self.currGame.players[LOCALPLAYER] fleet]) {
 					if ([aShip isHit:opp.moves[i]]) {
 						results[index] = HIT;
 					}
-					else if (results[index] == NOATTACK) {
-						results[i] = MISS;
+					else if (results[index] != HIT) {
+						results[index] = MISS;
 					}
 				}
 			}
@@ -62,7 +67,7 @@
 	int xLoc, yLoc;
 	xLoc = location.x = (int)floorf(location.x / (self.overlay.bounds.size.width / NUMGRIDS));
 	yLoc = location.y = (int)floorf(location.y / (self.overlay.bounds.size.height / NUMGRIDS));
-    [self.coordinatesLabel setText:[NSString stringWithFormat:@"%c%d", XLEGEND[xLoc], yLoc]];
+    [self.coordinatesLabel setText:[NSString stringWithFormat:@"Coordinates:%c%d", XLEGEND[xLoc], yLoc]];
 	for (int i = 1; i < [self.currGame.players count]; i++) {
 		int result = NOATTACK;
 		int turnOfAttack;
@@ -71,13 +76,14 @@
 				for (Ship *aShip in [self.currGame.players[LOCALPLAYER] fleet]) {
 					if ([aShip isHit:location])
 						result = HIT;
-					else
+					else if(result != HIT)
 						result = MISS;
 				}
 				turnOfAttack = j;
 				break;
 			}
 		}
+		//TODO-BUG All results are being counted as hits regardless of the turn the hit occurred on
 		if (result == NOATTACK)
 			[(UILabel *)[self viewWithTag:i] setText:@""];
 		else
