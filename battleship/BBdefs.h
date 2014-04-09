@@ -22,6 +22,7 @@
 #define XLEGEND "ABCDEFGHIJ"
 
 #define INVALID_COORD (-1)
+#define INVALID_TURN (-1)
 
 
 #endif
