@@ -31,7 +31,7 @@
 	[self.opp3Label setText:@""];
 	[self.opp4Label setText:@""];
 
-int *results = calloc(MAXMOVES, sizeof(int));
+	int *results = calloc(MAXMOVES, sizeof(int));
 
 	BOOL skippedLocalPlayer = NO;
 	for (Player *opp in self.currGame.players) {
@@ -68,29 +68,8 @@ int *results = calloc(MAXMOVES, sizeof(int));
 	xLoc = location.x = (int)floorf(location.x / (self.overlay.bounds.size.width / NUMGRIDS));
 	yLoc = location.y = (int)floorf(location.y / (self.overlay.bounds.size.height / NUMGRIDS));
     [self.coordinatesLabel setText:[NSString stringWithFormat:@"Coordinates:%c%d", XLEGEND[xLoc], yLoc]];
-//	for (int i = 1; i < [self.currGame.players count]; i++) {
-//		int result = NOATTACK;
-//		int turnOfAttack;
-//		for (int j = 0; j < self.currGame.turnNumber; j++) {
-//			if (CGPointEqualToPoint(location, [self.currGame.players[i] moves][j])) {
-//				for (Ship *aShip in [self.currGame.players[LOCALPLAYER] fleet]) {
-//					if ([aShip isHit:location])
-//						result = HIT;
-//					else if(result != HIT)
-//						result = MISS;
-//				}
-//				turnOfAttack = j;
-//				break;
-//			}
-//		}
-//		//TODO-BUG All results are being counted as hits regardless of the turn the hit occurred on
-//		if (result == NOATTACK)
-//			[(UILabel *)[self viewWithTag:i] setText:@""];
-//		else
-//			[(UILabel *)[self viewWithTag:i] setText:[NSString stringWithFormat:@"%@ %@ on turn: %d", [self.currGame.players[i] name], [self resultString:result], turnOfAttack]];
-//	}
 	int result[MAXPLAYERS] = {NOATTACK, NOATTACK, NOATTACK, NOATTACK, NOATTACK};
-	int turnOfAttack[MAXPLAYERS] = {INVALID_TURN,INVALID_TURN,INVALID_TURN,INVALID_TURN,-INVALID_TURN};
+	int turnOfAttack[MAXPLAYERS];
 	BOOL hitFound = NO;
 	for (int j = 0; j < self.currGame.turnNumber; j++) {
 		for (int i = 1; i < [self.currGame.players count]; i++) {
@@ -101,20 +80,21 @@ int *results = calloc(MAXMOVES, sizeof(int));
 					for (Ship *aShip in [self.currGame.players[LOCALPLAYER] fleet]) {
 						if ([aShip isHit:location]) {
 							result[i] = HIT;
-							hitFound = YES;
 							break;
 						}
 					}
 				}
 			}
 		}
+		if (!hitFound && (result[1]==HIT || result[2]==HIT || result[3]==HIT || result[4]==HIT))
+			hitFound = YES;
 	}
 	for (int i = 1; i < [self.currGame.players count]; i++) {
 		result[i] != NOATTACK ?
 		[(UILabel *)[self viewWithTag:i] setText:[NSString stringWithFormat:@"%@ %@ on turn: %d", [self.currGame.players[i] name], [self resultString:result[i]], turnOfAttack[i]]] :
 		[(UILabel *)[self viewWithTag:i] setText:@""];
 	}
-}  //TODO - It is now wrong in that players on same turn, only one gets the hit.  Still need to fix
+}  //TODO - Verify fix - that multiple hits on the same turn, all register.
 
 -(UIView *)viewWithTag:(int)tag {
 //Returns the UIView with the matching tag

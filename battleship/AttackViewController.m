@@ -33,7 +33,7 @@
 	CGPoint *localMoves = [self.currGame.players[LOCALPLAYER] moves];
 	NSMutableSet *allOppAtacks = [NSMutableSet set];
 	for (int i = 0; i < self.currGame.turnNumber; i++) {
-		int index = (int)localMoves[i].y * NUMGRIDS + (int)localMoves[i].x;
+		int gridIndex = (int)localMoves[i].y * NUMGRIDS + (int)localMoves[i].x;
 		BOOL skippedLocalPlayer = NO;
 		for (Player *opp in self.currGame.players) {
 			if (!skippedLocalPlayer) {
@@ -42,10 +42,10 @@
 			else {
 				for (Ship *aShip in opp.fleet) {
 					if ([aShip isHit:localMoves[i]] && ![allOppAtacks containsObject:[NSValue valueWithCGPoint:localMoves[i]]]) {
-						results[index] = HIT;
+						results[gridIndex] = HIT;
 					}
-					else if (results[index] != HIT) {
-						results[index] = MISS;
+					else if (results[gridIndex] != HIT) {
+						results[gridIndex] = MISS;
 					}
 				}
 				[allOppAtacks addObject:[NSValue valueWithCGPoint:opp.moves[i]]];
@@ -55,6 +55,10 @@
 	if(self.attackView.results)
 		free(self.attackView.results);
 	self.attackView.results = results;
+	
+	UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(firePressed:)];
+	[doubleTapRecognizer setNumberOfTapsRequired:2];
+	[self.attackView addGestureRecognizer:doubleTapRecognizer];
 }
 
 -(IBAction)showAttackLocation:(UITapGestureRecognizer *)recognizer {
