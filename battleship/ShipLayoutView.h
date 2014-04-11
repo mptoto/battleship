@@ -3,18 +3,16 @@
 //  battleship
 //
 //  Created by Michael Mayer on 2/10/14.
-//  Copyright (c) 2014 Matthew Toto. All rights reserved.
+//  Copyright (c) 2014 Michael M. Mayer. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "Ships.h"
+#import "Ship.h"
 #import "GameRepo.h"
 #import "AppDelegate.h"
+#import "BBdefs.h"
 
 @class ShipPaletteView;
-
-#define NUMGRIDS 10.0
-#define GRIDSIZE 32.0
 
 @interface ShipLayoutView : UIView
 @property (nonatomic, weak) NSArray *theShips;

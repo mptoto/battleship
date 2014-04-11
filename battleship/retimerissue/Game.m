@@ -2,8 +2,8 @@
 //  GameStates.m
 //  battleship
 //
-//  Created by Matthew Toto on 11/27/13.
-//  Copyright (c) 2013 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 11/27/13.
+//  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
 #import "Game.h"
@@ -11,42 +11,39 @@
 @implementation Game
 
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
 	if (self) {
 		self.turnNumber = 0;
 		self.isMyMove = YES;
 		self.timeLeft = 24.0 * 60.0 * 60.0; //number of seconds in a day
 		self.turnStartTime = [[NSDate alloc] init]; //initialized to current date and time
-		[self setOpponentNames:@[@"Todd"]];
 		[self setBoardMap:@"satelite_ocean_view_2.jpg"];
-		_myFleet = @[[[Ships alloc] init:2], [[Ships alloc] init:3], [[Ships alloc] init:3], [[Ships alloc] init:4], [[Ships alloc] init:5]];
-		
-		//myMoves;
-		//opponentShipLocations;
-		//opponentMoves;
-		
+		self.players = [[NSMutableArray alloc]init];
+		[self.players addObject:[[Player alloc] init]];
 	}
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
+//	@property int turnNumber;
+//	@property BOOL isMyMove;
+//	@property NSTimeInterval timeLeft;
+//	@property (nonatomic, strong) NSDate *turnStartTime;
+//	@property (nonatomic, strong) NSString *boardMap;
+//	@property (nonatomic, strong) NSArray *players;
 	self = [super init];
 	if (self) {
 		self.turnNumber = [aDecoder decodeIntForKey:@"turnNumber"];
 		self.isMyMove = [aDecoder decodeBoolForKey:@"isMyMove"];
 		self.timeLeft = [aDecoder decodeDoubleForKey:@"timeLeft"];
 		self.turnStartTime = [aDecoder decodeObjectForKey:@"turnStartTime"];
-		_myFleet = [aDecoder decodeObjectForKey:@"myFleet"];
+		self.players = [aDecoder decodeObjectForKey:@"players"];
 		
-		[self setOpponentNames:@[@"Todd"]];
 		[self setBoardMap:@"satelite_ocean_view_2.jpg"];
-		
-		//myMoves;
-		//opponentShipLocations;
-		//opponentMoves;
 	}
+	
 	return self;
 }
 
@@ -56,14 +53,21 @@
 	[aCoder encodeBool:self.isMyMove forKey:@"isMyMove"];
 	[aCoder encodeDouble:self.timeLeft forKey:@"timeLeft"];
 	[aCoder encodeObject:self.turnStartTime forKey:@"turnStartTime"];
-	[aCoder encodeObject:self.myFleet forKey:@"myFleet"];
-	
-	//[self setOpponentNames:@[@"Todd"]];
-	//[self setBoardMap:@"satelite_ocean_view_2.jpg"];
-	//myMoves;
-	//opponentShipLocations;
-	//opponentMoves;
+	[aCoder encodeObject:self.players forKey:@"players"];
+}
 
+- (void)generateTurn
+// called when the user has made their turn, generates opponents moves and increments turn counter
+// used when not working with a game server and the opps are all artificial
+{
+	for (Player *opp in self.players) {
+		if ([self.players indexOfObject:opp] != LOCALPLAYER) {
+			[opp generateMove:self.turnNumber];
+		}
+	}
+	self.turnNumber++;
+	self.turnStartTime = [[NSDate alloc] init];
+	self.isMyMove = YES;
 }
 
 @end

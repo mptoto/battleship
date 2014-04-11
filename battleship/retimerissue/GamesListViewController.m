@@ -2,18 +2,20 @@
 //  GamesListViewController.m
 //  battleship
 //
-//  Created by Matthew Toto on 11/27/13.
-//  Copyright (c) 2013 Matthew Toto. All rights reserved.
+//  Created by Michael M. Mayer on 11/27/13.
+//  Copyright (c) 2013 Michael M. Mayer. All rights reserved.
 //
 
 #import "GamesListViewController.h"
-#import "ViewController.h"
+#import "AttackViewController.h"
+#import "PlaceShipsViewController.h"
 #import "Game.h"
+#import "BBdefs.h"
 
 @implementation GamesListViewController
 
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -35,7 +37,19 @@
 	for (int i = 0; i < [[[GameRepo sharedRepo] allGames] count]; i++) {
 		for (Game *currGame in [[GameRepo sharedRepo] allGames][i]) {
 			NSTimeInterval elapsedTime = [now timeIntervalSinceDate: [currGame  turnStartTime]];
-			[currGame setTimeLeft:24.0 * 60.0 * 60.0 - elapsedTime];
+			if(elapsedTime > SECS_IN_DAY)
+			{
+				int elapsedTurns = (int)elapsedTime / SECS_IN_DAY;
+				for (int j=0; j < elapsedTurns; j++) {
+					if (currGame.isMyMove) {
+						[currGame.players[LOCALPLAYER] moves][currGame.turnNumber] = CGPointMake(INVALID_COORD, INVALID_COORD);
+					}
+					[currGame generateTurn];
+				}
+				elapsedTime = (int)elapsedTime % SECS_IN_DAY;
+				currGame.turnStartTime = [now dateByAddingTimeInterval:-elapsedTime];
+			}
+			[currGame setTimeLeft:(double)SECS_IN_DAY - elapsedTime];
 		}
 	}
 	[self.tableView reloadData];
@@ -70,15 +84,15 @@
 {
     static NSString *CellIdentifier = @"GameCell1";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];// forIndexPath:indexPath];
-	Game *current = [GameRepo sharedRepo].allGames[indexPath.section][indexPath.row];
-    [cell.textLabel setText:[current opponentNames][0]];
+	Game *currGame = [GameRepo sharedRepo].allGames[indexPath.section][indexPath.row];
+    [cell.textLabel setText:[currGame.players[LOCALPLAYER] name]];
 
     //turn "turnNumber" into string
-    NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %2.0d:%2.0d:%2.0d",[current turnNumber], (int)[current timeLeft]/(60*60), ((int)[current timeLeft]%(60*60))/60, ((int)[current timeLeft]%(60*60))%60];
+    NSString *turnNumberString = [NSString stringWithFormat:@"Turn: %i, time left %2.02d:%2.02d:%2.02d",[currGame turnNumber], (int)[currGame timeLeft]/(60*60), ((int)[currGame timeLeft]%(60*60))/60, ((int)[currGame timeLeft]%(60*60))%60];
     [cell.detailTextLabel setText:turnNumberString];
 
     //set picture for cell
-    cell.imageView.image = [UIImage imageNamed:[current boardMap]];
+    cell.imageView.image = [UIImage imageNamed:[currGame boardMap]];
     
     return cell;
 }
@@ -117,14 +131,16 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	ViewController *destVC = [segue destinationViewController];
+	UIViewController *destVC = [segue destinationViewController];
 	if([segue.identifier isEqualToString:@"PlaceShips"]){
+		PlaceShipsViewController * psVC = (PlaceShipsViewController *)destVC;
 		Game *newGame = [[GameRepo sharedRepo] generateNewGame];
-		destVC.currGame = newGame;
+		psVC.currGame = newGame;
 	}
 	else {
+		AttackViewController * aVC = (AttackViewController *)destVC;
 		NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-		destVC.currGame = [[GameRepo sharedRepo] allGames][indexPath.section][indexPath.row];
+		aVC.currGame = [[GameRepo sharedRepo] allGames][indexPath.section][indexPath.row];
 	}
 }
 
